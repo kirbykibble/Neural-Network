@@ -12,7 +12,7 @@ from sklearn.preprocessing import OneHotEncoder
 import os
 
 #Directory of labeled data
-rootdir = './labeled_data_test'
+rootdir = 'C:/Users/gagan/Desktop/mri_training/labeled_data_test'
 listOfData = []
 labels = []
 
@@ -60,7 +60,6 @@ df_y = onehot_encoder.fit_transform(integer_encoded)
 df_x = np.array(df_x)
 df_y = np.array(df_y)
 
-print(df_x.shape)
 #Create test/train split
 x_train, x_test, y_train, y_test = train_test_split(df_x, df_y, test_size=0.25, random_state=4)
 
@@ -71,7 +70,7 @@ model.add(Conv3D(8, (3, 3, 3), data_format='channels_last', activation='relu', i
 model.add(MaxPooling3D(pool_size=(2,2,2)))
 model.add(Flatten())
 model.add(Dropout(0.5))
-model.add(Dense(5))
+model.add(Dense(len(labels)))
 model.add(Activation('softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adadelta', metrics=['accuracy'])
 model.summary()
