@@ -12,7 +12,7 @@ from sklearn.preprocessing import OneHotEncoder
 import os
 
 #Directory of labeled data
-rootdir = 'C:/Users/gagan/Desktop/mri_training/labeled_data_test'
+rootdir = './labeled_data_test'
 listOfData = []
 labels = []
 
@@ -70,7 +70,7 @@ model.add(Conv3D(8, (3, 3, 3), data_format='channels_last', activation='relu', i
 model.add(MaxPooling3D(pool_size=(2,2,2)))
 model.add(Flatten())
 model.add(Dropout(0.5))
-model.add(Dense(len(labels)))
+model.add(Dense(5))
 model.add(Activation('softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adadelta', metrics=['accuracy'])
 model.summary()
